@@ -19,6 +19,8 @@ import android.hardware.SensorManager;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.text.TextUtilsCompat;
 import android.util.Log;
+import android.view.FocusFinder;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -603,6 +605,14 @@ public class ReactHorizontalScrollView extends HorizontalScrollView implements
 
   public void setBorderStyle(@Nullable String style) {
     mReactBackgroundManager.setBorderStyle(style);
+  }
+
+  @Override
+  public boolean executeKeyEvent(KeyEvent event) {
+    if (!mScrollEnabled) {
+      return false;
+    }
+    return super.executeKeyEvent(event);
   }
 
 }
