@@ -37,7 +37,15 @@ public class ReactAndroidHWInputDeviceHelper {
     KeyEvent.KEYCODE_MEDIA_REWIND,
     "rewind",
     KeyEvent.KEYCODE_MEDIA_FAST_FORWARD,
-    "fastForward"
+    "fastForward",
+    KeyEvent.KEYCODE_DPAD_LEFT,
+    "left",
+    KeyEvent.KEYCODE_DPAD_RIGHT,
+    "right",
+    KeyEvent.KEYCODE_DPAD_UP,
+    "up",
+    KeyEvent.KEYCODE_DPAD_DOWN,
+    "down"
   );
 
   /**
