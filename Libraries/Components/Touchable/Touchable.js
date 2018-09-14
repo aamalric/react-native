@@ -325,9 +325,9 @@ const TouchableMixin = {
       evt.dispatchConfig = {};
       if (myTag === evt.tag) {
         if (evt.eventType === 'focus') {
-          cmp.touchableHandleFocus(evt);
+          cmp.touchableHandleFocus && cmp.touchableHandleFocus(evt);
         } else if (evt.eventType === 'blur') {
-          cmp.touchableHandleBlur(evt);
+          cmp.touchableHandleBlur && cmp.touchableHandleBlur(evt);
         } else if (evt.eventType === 'select') {
           cmp.touchableHandlePress &&
             !cmp.props.disabled &&
@@ -526,49 +526,26 @@ const TouchableMixin = {
     }
   },
 
+  // ==== Abstract Application Callbacks ====
+
   /**
    * Invoked when the item receives focus. Mixers might override this to
    * visually distinguish the `VisualRect` so that the user knows that it
    * currently has the focus. Most platforms only support a single element being
    * focused at a time, in which case there may have been a previously focused
    * element that was blurred just prior to this.
+   * @abstract
+   * touchableHandleFocus: function,
    */
-  touchableHandleFocus: function(e: Event) {
-    this.props.onFocus && this.props.onFocus(e);
-  },
 
   /**
    * Invoked when the item loses focus. Mixers might override this to
    * visually distinguish the `VisualRect` so that the user knows that it
    * no longer has focus. Most platforms only support a single element being
    * focused at a time, in which case the focus may have moved to another.
-   */
-  touchableHandleBlur: function(e: Event) {
-    this.props.onBlur && this.props.onBlur(e);
-  },
-
-  // ==== Abstract Application Callbacks ====
-
-  /**
-   * Invoked when the item should be highlighted. Mixers should implement this
-   * to visually distinguish the `VisualRect` so that the user knows that
-   * releasing a touch will result in a "selection" (analog to click).
    *
    * @abstract
-   * touchableHandleActivePressIn: function,
-   */
-
-  /**
-   * Invoked when the item is "active" (in that it is still eligible to become
-   * a "select") but the touch has left the `PressRect`. Usually the mixer will
-   * want to unhighlight the `VisualRect`. If the user (while pressing) moves
-   * back into the `PressRect` `touchableHandleActivePressIn` will be invoked
-   * again and the mixer should probably highlight the `VisualRect` again. This
-   * event will not fire on an `touchEnd/mouseUp` event, only move events while
-   * the user is depressing the mouse/touch.
-   *
-   * @abstract
-   * touchableHandleActivePressOut: function
+   * touchableHandleBlur: function,
    */
 
   /**

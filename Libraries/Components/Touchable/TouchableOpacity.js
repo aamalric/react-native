@@ -194,7 +194,7 @@ const TouchableOpacity = ((createReactClass({
    * `Touchable.Mixin` self callbacks. The mixin will invoke these if they are
    * defined on your component.
    */
-  touchableHandleActivePressIn: function(e: Event) {
+  touchableHandleFocus: function(e: Event) {
     if (e.dispatchConfig.registrationName === 'onResponderGrant') {
       this._opacityActive(0);
     } else {
@@ -203,7 +203,7 @@ const TouchableOpacity = ((createReactClass({
     this.props.onPressIn && this.props.onPressIn(e);
   },
 
-  touchableHandleActivePressOut: function(e: Event) {
+  touchableHandleBlur: function(e: Event) {
     this._opacityInactive(250);
     this.props.onPressOut && this.props.onPressOut(e);
   },
